@@ -1,0 +1,43 @@
+[project]
+name = "table-registration"
+version = "0.1.0"
+description = "表注册智能体：字段映射、质量分析与解析规则生成"
+requires-python = ">=3.12"
+dependencies = [
+    "langgraph>=0.2",
+    "mcp>=1.0",
+    "openpyxl>=3.1",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "requests>=2.32",
+]
+
+[project.scripts]
+table-registration = "table_registration.cli:main"
+quality = "quality.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+table_registration = ["skills/**/*.md", "skills/**/*.json"]
+data_parsing = ["skills/**/*.md", "skills/**/*.json"]
+enrichment = ["skills/**/*.md", "skills/**/*.json"]
+quality = ["skills/**/*.md", "skills/**/*.json", "rules/**/*.json"]
+governance = ["skills/**/*.md", "skills/**/*.json"]
+
+[tool.uv]
+package = true
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
