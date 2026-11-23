@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["judgements"],
+  "properties": {
+    "judgements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["event_id", "labels"],
+        "properties": {
+          "event_id": { "type": "string" },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "decision"],
+              "properties": {
+                "name": { "type": "string" },
+                "decision": { "type": "string", "enum": ["accept", "reject", "insufficient"] },
+                "evidence_ids": { "type": "array", "items": { "type": "string" } },
+                "reason": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

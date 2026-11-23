@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["stop"],
+  "properties": {
+    "reasoning_summary": { "type": "string" },
+    "stop": { "type": "boolean" },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tool", "arguments"],
+        "properties": {
+          "tool": { "type": "string" },
+          "arguments": { "type": "object" },
+          "purpose": { "type": "string" }
+        }
+      }
+    }
+  }
+}
