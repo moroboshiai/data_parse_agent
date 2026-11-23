@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "required": ["source_field", "target_field", "samples", "cleaning_goal"],
+  "properties": {
+    "source_field": { "type": "string" },
+    "target_field": { "type": "string" },
+    "cleaning_goal": { "type": "string" },
+    "samples": { "type": "array" }
+  }
+}

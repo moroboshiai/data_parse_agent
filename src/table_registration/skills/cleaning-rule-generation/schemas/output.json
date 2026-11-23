@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_field", "target_field", "rule_type", "operator"],
+  "properties": {
+    "source_field": { "type": "string" },
+    "target_field": { "type": "string" },
+    "rule_type": { "type": "string" },
+    "operator": { "type": "string" },
+    "input_formats": { "type": "array", "items": { "type": "string" } },
+    "output_format": { "type": "string" },
+    "expression": { "type": "string" },
+    "idempotent": { "type": "boolean" },
+    "description": { "type": "string" }
+  }
+}

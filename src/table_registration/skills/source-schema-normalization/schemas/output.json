@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_fields"],
+  "properties": {
+    "source_fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field_id", "field_name", "field_type", "description"],
+        "properties": {
+          "field_id": { "type": "string" },
+          "field_name": { "type": "string" },
+          "field_type": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "required": ["source_fields", "standard_fields"],
+  "properties": {
+    "source_fields": { "type": "array" },
+    "standard_fields": { "type": "array" }
+  }
+}

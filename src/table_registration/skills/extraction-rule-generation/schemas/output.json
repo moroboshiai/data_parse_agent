@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_field", "target_field", "rule_type", "pattern", "group", "expected_type"],
+  "properties": {
+    "source_field": { "type": "string" },
+    "target_field": { "type": "string" },
+    "rule_type": { "type": "string" },
+    "pattern": { "type": "string" },
+    "group": { "type": "integer" },
+    "expected_type": { "type": "string" },
+    "description": { "type": "string" }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "cases": [
+    {
+      "source_field": "custom_01",
+      "samples": ["10.10.1.9"],
+      "previous_confidence": "low",
+      "target_field": "src_ip",
+      "confidence": "medium",
+      "evidence": ["样本符合IPv4格式"],
+      "reason": "字段名没有语义，只能依据样本弱推断为源IP，需要人工确认"
+    },
+    {
+      "source_field": "custom_02",
+      "samples": ["备注信息"],
+      "target_field": null,
+      "confidence": "low",
+      "reason": "样本仍然无法判断规范字段"
+    }
+  ]
+}

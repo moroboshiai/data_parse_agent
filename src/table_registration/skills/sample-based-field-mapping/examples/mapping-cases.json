@@ -1,0 +1,12 @@
+{
+  "cases": [
+    {
+      "source_field": "sip",
+      "samples": ["10.10.1.5"],
+      "target_field": "src_ip",
+      "confidence": "high",
+      "evidence": ["字段名称语义匹配", "样本符合IPv4格式"],
+      "reason": "字段名称及样本特征均支持源IP语义"
+    }
+  ]
+}

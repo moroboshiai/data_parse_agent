@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "required": ["source_field", "target_field", "samples", "extraction_goal"],
+  "properties": {
+    "source_field": { "type": "string" },
+    "target_field": { "type": "string" },
+    "expected_type": { "type": "string" },
+    "extraction_goal": { "type": "string" },
+    "samples": { "type": "array" }
+  }
+}

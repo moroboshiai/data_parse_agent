@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_field", "target_field", "direct_mapping", "needs_extraction", "needs_cleaning", "analysis"],
+  "properties": {
+    "source_field": { "type": "string" },
+    "target_field": { "type": "string" },
+    "direct_mapping": { "type": "boolean" },
+    "needs_extraction": { "type": "boolean" },
+    "needs_cleaning": { "type": "boolean" },
+    "analysis": { "type": "string" },
+    "extraction_goal": { "type": "string" },
+    "cleaning_goal": { "type": "string" },
+    "issues": { "type": "array", "items": { "type": "string" } }
+  }
+}

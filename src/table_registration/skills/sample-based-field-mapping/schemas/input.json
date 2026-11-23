@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": ["source_fields", "samples", "standard_fields"],
+  "properties": {
+    "source_fields": { "type": "array" },
+    "samples": { "type": "object" },
+    "standard_fields": { "type": "array" }
+  }
+}
