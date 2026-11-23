@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["standard_field", "source_field", "operator", "rule_type"],
+  "properties": {
+    "standard_field": { "type": "string" },
+    "source_field": { "type": "string" },
+    "operator": { "type": "string" },
+    "params": { "type": "object" },
+    "rule_type": { "type": "string" }
+  }
+}

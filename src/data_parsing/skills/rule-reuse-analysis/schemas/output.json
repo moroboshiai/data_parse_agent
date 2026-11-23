@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reuse", "reason"],
+  "properties": {
+    "reuse": { "type": "boolean" },
+    "rule_id": { "type": "string" },
+    "reason": { "type": "string" }
+  }
+}

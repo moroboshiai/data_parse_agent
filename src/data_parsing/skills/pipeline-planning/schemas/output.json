@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["actions"],
+  "properties": {
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_field", "standard_field", "action"],
+        "properties": {
+          "source_field": { "type": "string" },
+          "standard_field": { "type": "string" },
+          "action": {
+            "type": "string",
+            "enum": [
+              "passthrough",
+              "use_existing",
+              "reuse_generic",
+              "use_seeded",
+              "generate",
+              "human_review",
+              "return_to_registration"
+            ]
+          },
+          "reason": { "type": "string" }
+        }
+      }
+    }
+  }
+}

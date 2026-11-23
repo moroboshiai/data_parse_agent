@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["action", "reason"],
+  "properties": {
+    "action": { "type": "string" },
+    "reason": { "type": "string" },
+    "issue_type": { "type": "string" }
+  }
+}

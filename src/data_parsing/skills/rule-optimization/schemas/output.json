@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operator", "rule_type", "reason"],
+  "properties": {
+    "operator": { "type": "string" },
+    "params": { "type": "object" },
+    "rule_type": { "type": "string" },
+    "reason": { "type": "string" }
+  }
+}

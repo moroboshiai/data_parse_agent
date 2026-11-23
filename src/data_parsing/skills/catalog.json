@@ -1,0 +1,27 @@
+{
+  "skills": [
+    {
+      "name": "pipeline-planning",
+      "description": "根据字段库存事实选择允许的下一步动作",
+      "actions": [
+        "passthrough",
+        "use_existing",
+        "reuse_generic",
+        "use_seeded",
+        "generate",
+        "human_review",
+        "return_to_registration"
+      ]
+    },
+    {
+      "name": "rule-reuse-analysis",
+      "description": "判断通用规则能否用于当前数据源",
+      "actions": ["reuse_generic"]
+    },
+    {
+      "name": "rule-generation",
+      "description": "为规则缺口生成白名单算子规则",
+      "actions": ["generate"]
+    }
+  ]
+}
