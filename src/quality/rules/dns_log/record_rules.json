@@ -1,0 +1,44 @@
+{
+  "rules": [
+    {
+      "rule_id": "DNS_RECORD_001",
+      "rule_name": "核心字段组合完整性",
+      "category": "dns_log",
+      "scope": {"source_id": "", "fields": ["src_ip", "domain", "time"]},
+      "dimension": "completeness",
+      "rule_type": "deterministic",
+      "operator": "record_required",
+      "params": {"all_of": ["time"], "any_of": ["src_ip", "domain"], "alert_rate": 0.05},
+      "severity": "high",
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "rule_id": "DNS_RECORD_002",
+      "rule_name": "疑似重复记录",
+      "category": "dns_log",
+      "scope": {"source_id": "", "fields": []},
+      "dimension": "uniqueness",
+      "rule_type": "deterministic",
+      "operator": "record_fingerprint",
+      "params": {"fields_from_profile": "duplicate_fields", "alert_rate": 2},
+      "severity": "info",
+      "enabled": true,
+      "version": "1.0.0",
+      "description": "只统计疑似重复，不删除记录。指纹字段由画像提供。"
+    },
+    {
+      "rule_id": "DNS_RECORD_004",
+      "rule_name": "未来时间记录",
+      "category": "dns_log",
+      "scope": {"source_id": "", "fields": ["time"]},
+      "dimension": "timeliness",
+      "rule_type": "deterministic",
+      "operator": "future_time",
+      "params": {"field": "time", "formats": ["iso8601"], "slack_hours": 24, "alert_rate": 0.01},
+      "severity": "medium",
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

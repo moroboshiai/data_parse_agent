@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["needs_diagnosis", "reason"],
+  "properties": {
+    "needs_diagnosis": { "type": "boolean" },
+    "reason": { "type": "string" }
+  }
+}

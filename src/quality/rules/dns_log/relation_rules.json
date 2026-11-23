@@ -1,0 +1,62 @@
+{
+  "rules": [
+    {
+      "rule_id": "DNS_REL_001",
+      "rule_name": "查询类型与应答类型关系",
+      "category": "dns_log",
+      "scope": {"source_id": "", "fields": ["dns_query_type", "dns_ansr_type"]},
+      "dimension": "consistency",
+      "rule_type": "deterministic",
+      "operator": "type_relation",
+      "params": {
+        "query_field": "dns_query_type",
+        "answer_field": "dns_ansr_type",
+        "fail_unknown": false,
+        "alert_rate": 0.2,
+        "compatible": {
+          "A": ["A", "CNAME", "NULL"],
+          "AAAA": ["AAAA", "CNAME", "NULL"],
+          "PTR": ["PTR", "CNAME", "NULL"],
+          "MX": ["MX", "CNAME", "NULL"],
+          "TXT": ["TXT", "CNAME", "NULL"],
+          "NS": ["NS", "CNAME", "NULL"],
+          "*": ["CNAME", "NULL"]
+        }
+      },
+      "severity": "low",
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "rule_id": "DNS_REL_002",
+      "rule_name": "应答类型与应答内容格式",
+      "category": "dns_log",
+      "scope": {"source_id": "", "fields": ["dns_ansr_type", "dns_ansr_cont"]},
+      "dimension": "consistency",
+      "rule_type": "deterministic",
+      "operator": "validate_dns_rdata",
+      "params": {
+        "type_field": "dns_ansr_type",
+        "value_field": "dns_ansr_cont",
+        "alert_rate": 0.05,
+        "mapping": {"A": "ipv4", "AAAA": "ipv6", "CNAME": "domain", "PTR": "domain", "NS": "domain", "MX": "domain", "TXT": "text", "SRV": "text"}
+      },
+      "severity": "medium",
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "rule_id": "DNS_REL_003",
+      "rule_name": "无记录响应码与应答内容",
+      "category": "dns_log",
+      "scope": {"source_id": "", "fields": ["dns_res_code", "dns_ansr_cont"]},
+      "dimension": "consistency",
+      "rule_type": "deterministic",
+      "operator": "rcode_value_conflict",
+      "params": {"rcode_field": "dns_res_code", "value_field": "dns_ansr_cont", "empty_rcodes": ["3", "NXDOMAIN"], "alert_rate": 0.5},
+      "severity": "low",
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

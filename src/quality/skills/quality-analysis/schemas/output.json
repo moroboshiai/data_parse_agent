@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "quality_status", "recommendations"],
+  "properties": {
+    "summary": { "type": "string" },
+    "quality_status": { "type": "string", "enum": ["ok", "warning", "critical"] },
+    "recommendations": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "rules": [
+    {
+      "rule_id": "FLOW_STAT_001",
+      "rule_name": "源IP空值率异常",
+      "category": "flow_log",
+      "scope": {"source_id": "", "fields": ["src_ip"]},
+      "dimension": "completeness",
+      "rule_type": "statistical",
+      "operator": "compare_metric",
+      "params": {"metric": "field_null_rate", "field": "src_ip", "threshold": 0.2, "comparison": "gt"},
+      "severity": "high",
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "rule_id": "FLOW_STAT_002",
+      "rule_name": "数据量相对基线下降",
+      "category": "flow_log",
+      "scope": {"source_id": "", "fields": []},
+      "dimension": "timeliness",
+      "rule_type": "statistical",
+      "operator": "compare_baseline",
+      "params": {"metric": "volume", "ratio_lt": 0.5},
+      "severity": "high",
+      "enabled": true,
+      "version": "1.0.0"
+    },
+    {
+      "rule_id": "FLOW_STAT_003",
+      "rule_name": "数据量相对基线上升",
+      "category": "flow_log",
+      "scope": {"source_id": "", "fields": []},
+      "dimension": "timeliness",
+      "rule_type": "statistical",
+      "operator": "compare_baseline",
+      "params": {"metric": "volume", "ratio_gt": 2},
+      "severity": "medium",
+      "enabled": true,
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["target_agent", "task_type", "description", "expected_result", "verification_metrics"],
+  "properties": {
+    "target_agent": { "type": "string" },
+    "task_type": { "type": "string" },
+    "description": { "type": "string" },
+    "expected_result": { "type": "string" },
+    "verification_metrics": { "type": "array", "items": { "type": "string" } }
+  }
+}

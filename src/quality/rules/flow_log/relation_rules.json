@@ -1,0 +1,18 @@
+{
+  "rules": [
+    {
+      "rule_id": "FLOW_REL_001",
+      "rule_name": "接收时间与时间分区",
+      "category": "flow_log",
+      "scope": {"source_id": "", "fields": ["recv_time", "time"]},
+      "dimension": "consistency",
+      "rule_type": "deterministic",
+      "operator": "time_matches_partition",
+      "params": {"time_field": "recv_time", "partition_fields": ["time"], "time_formats": ["iso8601"], "alert_rate": 0.05},
+      "severity": "medium",
+      "enabled": true,
+      "version": "1.0.0",
+      "description": "time 为 YYYYMMDDHH 分区时与 recv_time 对齐；无法识别的时间文本记为未知"
+    }
+  ]
+}
