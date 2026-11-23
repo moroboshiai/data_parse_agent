@@ -1,0 +1,22 @@
+{
+  "indicators": [
+    {
+      "indicator_type": "domain",
+      "value": "evil.example",
+      "threat_status": "malicious",
+      "threat_type": "malicious_domain",
+      "source": "internal_threat_intel",
+      "confidence": "high",
+      "last_seen": "2026-11-05T12:00:00Z"
+    },
+    {
+      "indicator_type": "domain",
+      "value": "suspicious.example",
+      "threat_status": "suspicious",
+      "threat_type": "suspicious_domain",
+      "source": "internal_threat_intel",
+      "confidence": "medium",
+      "last_seen": "2026-11-05T12:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "records": [
+    {
+      "indicator_type": "domain",
+      "value": "suspicious.example",
+      "first_seen": "2026-11-05T12:00:00Z",
+      "frequency": "low"
+    }
+  ]
+}

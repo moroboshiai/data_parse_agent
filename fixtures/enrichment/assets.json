@@ -1,0 +1,12 @@
+{
+  "assets": [
+    {
+      "ip": "10.10.1.25",
+      "asset_name": "业务应用服务器",
+      "asset_level": "critical",
+      "organization": "某业务单位",
+      "is_internal": true,
+      "is_key_asset": true
+    }
+  ]
+}

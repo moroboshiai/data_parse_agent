@@ -1,0 +1,56 @@
+{
+  "runs": [
+    {
+      "run_id": "company1_dns__dns_log",
+      "source_name": "company1_dns",
+      "category": "dns_log",
+      "stage": "await_confirm",
+      "status": "awaiting_confirm",
+      "sample_path": "data/source/company1/dns/dns_sample.csv",
+      "input_path": "data/source/company1/dns/dns.csv",
+      "standard_schema_path": "data/standard_schema/dns_schema.json",
+      "knowledge_path": "data/enrichment_knowledge/company1_dns",
+      "candidate_path": "outputs/candidates/954d317583a74a3eaccd598f037e63e9.json",
+      "pipeline_id": "",
+      "parsed_path": "",
+      "profile_path": "",
+      "parse_event_count": 0,
+      "enrichment_count": 0,
+      "blockers": ["等待确认候选映射"],
+      "artifacts": [
+        {"kind": "candidate", "path": "outputs/candidates/954d317583a74a3eaccd598f037e63e9.json", "status": "pending_review"}
+      ],
+      "history": [
+        {"stage": "intake", "action": "start", "detail": "company1_dns"},
+        {"stage": "register", "action": "registered", "detail": "候选待复核，时间清洗规则未通过"}
+      ]
+    },
+    {
+      "run_id": "company1_flow__flow_log",
+      "source_name": "company1_flow",
+      "category": "flow_log",
+      "stage": "review",
+      "status": "review",
+      "sample_path": "data/source/company1/flow/flowdata.csv",
+      "input_path": "data/source/company1/flow/flowdata.csv",
+      "standard_schema_path": "data/standard_schema/flow_schema.json",
+      "knowledge_path": "",
+      "candidate_path": "outputs/candidates/flow-confirmed.json",
+      "pipeline_id": "pipeline_company1_flow",
+      "parsed_path": "outputs/parsed/pipeline_company1_flow.jsonl",
+      "profile_path": "data/quality/profiles/flow_log.json",
+      "parse_event_count": 0,
+      "enrichment_count": 0,
+      "blockers": ["未提供知识目录，富化已跳过"],
+      "artifacts": [
+        {"kind": "pipeline", "path": "pipeline_company1_flow", "status": "human_review"},
+        {"kind": "parsed", "path": "outputs/parsed/pipeline_company1_flow.jsonl", "events": 0},
+        {"kind": "profile", "path": "data/quality/profiles/flow_log.json"}
+      ],
+      "history": [
+        {"stage": "await_confirm", "action": "confirm", "detail": "候选已确认"},
+        {"stage": "enrich", "action": "skipped", "detail": "未提供知识目录"}
+      ]
+    }
+  ]
+}

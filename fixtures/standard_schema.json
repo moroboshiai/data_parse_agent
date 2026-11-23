@@ -1,0 +1,31 @@
+{
+  "id": "security_log",
+  "name": "安全日志",
+  "category_alias": "security_log",
+  "fields": [
+    {
+      "name": "src_ip",
+      "type": "ip",
+      "description": "源IP地址",
+      "allow_multi_source": true
+    },
+    {
+      "name": "dst_ip",
+      "type": "ip",
+      "description": "目的IP地址",
+      "allow_multi_source": false
+    },
+    {
+      "name": "url",
+      "type": "url",
+      "description": "访问地址",
+      "allow_multi_source": false
+    },
+    {
+      "name": "event_time",
+      "type": "datetime",
+      "description": "事件时间",
+      "allow_multi_source": false
+    }
+  ]
+}

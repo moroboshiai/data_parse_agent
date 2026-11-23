@@ -1,0 +1,91 @@
+{
+  "records": [
+    {
+      "event_id": "evt-dns-0001",
+      "strategy_version": "1.0.0",
+      "event_type": "dns",
+      "src_ip": "43.251.100.20",
+      "domain": "lookcloud.net",
+      "facts": [
+        {"name": "情报命中", "value": "域名位于观察列表", "evidence_ids": ["ev_intel_domain_lookcloud.net"]}
+      ],
+      "labels": [
+        {
+          "name": "可疑域名",
+          "confidence": "medium",
+          "status": "needs_review",
+          "evidence_ids": ["ev_intel_domain_lookcloud.net"],
+          "reason": "情报命中但缺少历史确认"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_intel_domain_lookcloud.net",
+          "evidence_type": "threat_intel",
+          "subject": "lookcloud.net",
+          "source": "intel.json"
+        }
+      ],
+      "investigation_status": "investigation_required"
+    },
+    {
+      "event_id": "evt-flow-0008",
+      "strategy_version": "1.0.0",
+      "event_type": "flow_log",
+      "src_ip": "10.1.2.3",
+      "domain": "",
+      "facts": [
+        {"name": "内部资产", "value": "办公网终端", "evidence_ids": ["ev_asset_ip_10.1.2.3"]}
+      ],
+      "labels": [
+        {
+          "name": "异常外联",
+          "confidence": "low",
+          "status": "rejected",
+          "evidence_ids": ["ev_asset_ip_10.1.2.3"],
+          "reason": "目的地址为内部资产，不构成外联"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev_asset_ip_10.1.2.3",
+          "evidence_type": "asset",
+          "subject": "10.1.2.3",
+          "source": "assets.json"
+        }
+      ],
+      "investigation_status": "not_required"
+    }
+  ],
+  "investigations": [
+    {
+      "event_id": "evt-dns-0001",
+      "investigation_status": "needs_review",
+      "recommendation": "保留可疑域名标签为待复核，补充历史解析记录后再决定是否采纳。",
+      "facts": [
+        {"name": "情报命中", "value": "域名位于观察列表", "evidence_ids": ["ev_intel_domain_lookcloud.net"]}
+      ],
+      "labels": [
+        {"name": "可疑域名", "status": "needs_review", "confidence": "medium"}
+      ],
+      "missing_evidence": ["history.json 中没有 lookcloud.net 的历史记录"],
+      "decisions": [
+        {"round": 1, "tool": "lookup_intel", "accepted": true, "detail": "命中域名情报"},
+        {"round": 2, "tool": "lookup_history", "accepted": true, "detail": "无历史记录"}
+      ]
+    }
+  ],
+  "knowledge": {
+    "assets": [
+      {"ip": "10.1.2.3", "name": "办公网终端", "importance": "普通"},
+      {"ip": "10.8.0.15", "name": "核心交换机", "importance": "重点"}
+    ],
+    "indicators": [
+      {"indicator_type": "domain", "value": "lookcloud.net", "source": "本地观察列表"},
+      {"indicator_type": "ip", "value": "203.0.113.9", "source": "本地情报"}
+    ],
+    "history": [
+      {"indicator_type": "ip", "value": "10.1.2.3", "note": "近 7 日多次访问 443"}
+    ]
+  }
+}

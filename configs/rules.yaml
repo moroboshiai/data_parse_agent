@@ -1,0 +1,12 @@
+# 表注册业务约束。阈值由程序执行，不交给模型自行解释。
+
+rules:
+  max_sample_rows: 20
+  max_fields: 50
+  regex_max_length: 500
+  batch_size: 4
+  mapping_batch_fields: 20
+  rule_version: 1
+  confidence:
+    high_min: 0.85
+    medium_min: 0.55

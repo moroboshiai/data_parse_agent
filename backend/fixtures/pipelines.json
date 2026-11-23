@@ -1,0 +1,60 @@
+{
+  "pipelines": [
+    {
+      "pipeline_id": "pipeline_company1_dns",
+      "status": "active",
+      "source_name": "company1_dns",
+      "source_type": "dns_log",
+      "candidate_id": "da4d966ffabf49a0a48010d305d6bc9a",
+      "field_steps": [
+        {"field": "src_ip", "operator": "passthrough", "rule_id": "rule_src_ip", "active_version": 1},
+        {"field": "dst_ip", "operator": "passthrough", "rule_id": "rule_dst_ip", "active_version": 1},
+        {"field": "domain", "operator": "passthrough", "rule_id": "rule_domain", "active_version": 1},
+        {"field": "time", "operator": "passthrough", "rule_id": "rule_time", "active_version": 1}
+      ],
+      "preview": [
+        {"src_ip": "43.251.100.20", "dst_ip": "8.8.8.8", "domain": "lookcloud.net", "dns_query_type": "A", "time": "2026-10-14T10:37:39.000+08:00"},
+        {"src_ip": "1033664740", "dst_ip": "1.1.1.1", "domain": "example.com", "dns_query_type": "AAAA", "time": "2026-10-14T10:39:30.000+08:00"}
+      ],
+      "events": [
+        {
+          "event_id": "evt-001",
+          "field": "time",
+          "operator": "normalize_time",
+          "message": "无法解析时间: 2026-10-14T10:37:39.000+08:00",
+          "resolution": ""
+        }
+      ],
+      "learn_decisions": [
+        {
+          "event_id": "evt-001",
+          "action": "canary",
+          "summary": "建议为 time 增加 ISO 8601 解析，新版本挂为 canary，未替换 active"
+        }
+      ],
+      "rules": [
+        {"rule_id": "rule_time", "active_version": 1, "canary_version": 2, "operator": "passthrough"}
+      ]
+    },
+    {
+      "pipeline_id": "pipeline_company1_flow",
+      "status": "human_review",
+      "source_name": "company1_flow",
+      "source_type": "flow_log",
+      "candidate_id": "flow-candidate-demo",
+      "field_steps": [
+        {"field": "src_ip", "operator": "passthrough", "rule_id": "rule_flow_sip", "active_version": 1},
+        {"field": "dst_ip", "operator": "passthrough", "rule_id": "rule_flow_dip", "active_version": 1},
+        {"field": "src_port", "operator": "convert_type", "rule_id": "rule_flow_sport", "active_version": 1}
+      ],
+      "preview": [
+        {"src_ip": "10.1.2.3", "dst_ip": "172.16.0.8", "src_port": 54321, "dst_port": 443, "proto_4": "TCP"}
+      ],
+      "events": [],
+      "learn_decisions": [],
+      "rules": [
+        {"rule_id": "rule_flow_sport", "active_version": 1, "canary_version": null, "operator": "convert_type"}
+      ]
+    }
+  ]
+}

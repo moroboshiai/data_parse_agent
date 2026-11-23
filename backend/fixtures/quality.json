@@ -1,0 +1,84 @@
+{
+  "profiles": [
+    {
+      "source_id": "dns_log",
+      "category": "dns_log",
+      "time_field": "time",
+      "field_count": 86,
+      "profile_path": "data/quality/profiles/dns_log.json"
+    },
+    {
+      "source_id": "company1_flow",
+      "category": "flow_log",
+      "time_field": "time",
+      "field_count": 197,
+      "profile_path": "data/quality/profiles/company1_flow.json"
+    }
+  ],
+  "reports": [
+    {
+      "report_id": "QR-company1_dns-20261111-a1b2c3",
+      "source_id": "dns_log",
+      "category": "dns_log",
+      "quality_status": "warning",
+      "window": "2026-10-14",
+      "row_count": 2000,
+      "issue_count": 2,
+      "issue_ids": ["QI-dns-time-001", "QI-dns-domain-002"],
+      "summary": "域名与源 IP 完整率正常。时间字段仍有 ISO 8601 样本未能按目标格式归一，建议复核解析规则。"
+    }
+  ],
+  "issues": [
+    {
+      "issue_id": "QI-dns-time-001",
+      "report_id": "QR-company1_dns-20261111-a1b2c3",
+      "source_id": "dns_log",
+      "severity": "high",
+      "dimension": "validity",
+      "field": "time",
+      "metric": "time_parse_fail_rate",
+      "value": 0.18,
+      "threshold": 0.05,
+      "title": "时间格式有效性低于阈值"
+    },
+    {
+      "issue_id": "QI-dns-domain-002",
+      "report_id": "QR-company1_dns-20261111-a1b2c3",
+      "source_id": "dns_log",
+      "severity": "medium",
+      "dimension": "completeness",
+      "field": "domain",
+      "metric": "field_null_rate",
+      "value": 0.04,
+      "threshold": 0.2,
+      "title": "域名字段空值率处于观察区间"
+    }
+  ],
+  "baseline": {
+    "source_id": "dns_log",
+    "category": "dns_log",
+    "volume": 1800,
+    "updated_at": "2026-11-10T09:00:00+08:00",
+    "comparisons": [
+      {"metric": "field_null_rate:domain", "baseline": 0.03, "current": 0.04, "delta": 0.01},
+      {"metric": "time_parse_fail_rate", "baseline": 0.02, "current": 0.18, "delta": 0.16},
+      {"metric": "volume", "baseline": 1800, "current": 2000, "delta": 200}
+    ]
+  },
+  "diagnoses": [
+    {
+      "issue_id": "QI-dns-time-001",
+      "diagnosis_id": "QD-dns-time-001",
+      "summary": "解析规则 time 仍为 passthrough，样本带毫秒和时区偏移。注册阶段 C001 使用了无法被 strptime 识别的格式串。",
+      "verified": ["候选 954d3175 的 C001 试跑失败", "解析事件 evt-001 记录同一时间串"],
+      "unverified": ["目标规范字段 time 是否允许保留 ISO 8601"],
+      "task": {
+        "task_id": "QT-dns-time-001",
+        "target_agent": "data_parsing",
+        "task_type": "fix",
+        "description": "为 time 增加可解析 ISO 8601 的规则版本，先挂 canary，人工 publish 后再全量解析。",
+        "verification_metrics": ["time_parse_fail_rate"]
+      }
+    }
+  ]
+}
